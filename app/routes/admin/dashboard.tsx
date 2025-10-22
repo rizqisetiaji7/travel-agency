@@ -1,15 +1,7 @@
 import { Header, StatsCard, TripCard } from "components";
+import { allTrips, dashboardStats, user } from "~/constants";
 import { usePageTitle } from "~/lib/utils";
 
-const user = { name: "John" }; // Example user object
-const dashboardStats = {
-    // Example fake data
-    totalUsers: 12450,
-    usersJoined: { currentMonth: 218, lastMonth: 176 },
-    totalTrips: 3210,
-    tripsCreated: { currentMonth: 150, lastMonth: 250 },
-    userRole: { total: 62, currentMonth: 25, lastMonth: 15 },
-};
 const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
     dashboardStats;
 
@@ -45,7 +37,37 @@ const Dashboard = () => {
                     />
                 </div>
             </section>
-            <TripCard />
+
+            <section className="container">
+                <h1 className="text-xl font-semibold text-dark-100">
+                    Created Trips
+                </h1>
+
+                <div className="trip-grid">
+                    {allTrips
+                        .slice(0, 4)
+                        .map(
+                            ({
+                                id,
+                                name,
+                                tags,
+                                imageUrls,
+                                itinerary,
+                                estimatedPrice,
+                            }) => (
+                                <TripCard
+                                    key={id}
+                                    id={id.toString()}
+                                    name={name}
+                                    tags={tags}
+                                    imageUrl={imageUrls[0]}
+                                    location={itinerary?.[0]?.location || ""}
+                                    price={estimatedPrice}
+                                />
+                            ),
+                        )}
+                </div>
+            </section>
         </main>
     );
 };
