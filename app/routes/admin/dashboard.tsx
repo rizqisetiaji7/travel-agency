@@ -1,19 +1,20 @@
 import { Header, StatsCard, TripCard } from "components";
 import { usePageTitle } from "~/lib/utils";
 
+const user = { name: "John" }; // Example user object
+const dashboardStats = {
+    // Example fake data
+    totalUsers: 12450,
+    usersJoined: { currentMonth: 218, lastMonth: 176 },
+    totalTrips: 3210,
+    tripsCreated: { currentMonth: 150, lastMonth: 250 },
+    userRole: { total: 62, currentMonth: 25, lastMonth: 15 },
+};
+const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
+    dashboardStats;
+
 const Dashboard = () => {
     usePageTitle("Dashboard - Travel Agency");
-    const user = { name: "John" }; // Example user object
-    const dashboardStats = {
-        // Example fake data
-        totalUsers: 12450,
-        usersJoined: { currentMonth: 218, lastMonth: 176 },
-        totalTrips: 3210,
-        tripsCreated: { currentMonth: 150, lastMonth: 250 },
-        userRole: { total: 62, currentMonth: 25, lastMonth: 15 },
-    };
-    const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
-        dashboardStats;
 
     return (
         <main className="dashboard wrapper">
